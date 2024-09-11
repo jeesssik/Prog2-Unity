@@ -37,11 +37,16 @@ public class DungeonGenerator : MonoBehaviour
 
                 if (currentCell.visited)
                 {
-                    int randomRoom= Random.Range(0, rooms.Length);
+                    int randomRoom = Random.Range(0, rooms.Length);
                     GameObject newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0f, -j * offset.y), Quaternion.identity) as GameObject;
                     RoomBehaviour rb = newRoom.GetComponent<RoomBehaviour>();
                     rb.UpdateRoom(currentCell.status);
 
+                    // Si es la habitación inicial, eliminar enemigos
+                    if (i == 0 && j == 0) // O compara con el _startPos si está indexado
+                    {
+                        rb.ClearEnemies(); // Dejar libre de enemigos
+                    }
 
                     newRoom.name += " " + i + "-" + j;
                 }
