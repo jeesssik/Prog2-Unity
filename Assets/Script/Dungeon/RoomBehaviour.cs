@@ -5,15 +5,9 @@ using UnityEngine;
 public class RoomBehaviour : MonoBehaviour
 {
     //0-Up, 1-Down, 2-Right, 3-Left
-    public GameObject[] walls;
-    public GameObject[] doors;
+    [SerializeField]private GameObject[] walls;
+    [SerializeField]private GameObject[] doors;
 
-    //public bool[] testStatus;
-
-   /* void Start()
-    {
-        UpdateRoom(testStatus);
-    }*/
     
     public void UpdateRoom(bool[] status)
     {

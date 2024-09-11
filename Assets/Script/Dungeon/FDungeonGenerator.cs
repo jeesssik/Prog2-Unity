@@ -18,7 +18,7 @@ public class FDungeonGenerator : MonoBehaviour
     [SerializeField] Vector2 offset;
     
     List<Cell> _board;
-    RoomSpawner _roomSpawner;
+    //RoomSpawner _roomSpawner;
 
     // Start is called before the first frame update
     void Start()
