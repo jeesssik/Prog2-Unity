@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
 
             if(Physics.Raycast(_ray, out _hit, 20,_layerMask))
             {
-                //Debug.DrawRay(_ray.origin, _ray.direction * 20, Color.red);
+                Debug.DrawRay(_ray.origin, _ray.direction * 20, Color.red);
                
                //Melee Attack
                 var damagable = _hit.transform.GetComponent<IDamagable>();
