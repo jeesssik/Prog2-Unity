@@ -28,9 +28,11 @@ public class PlayerAttack : MonoBehaviour
         {
             
             _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            
 
             if(Physics.Raycast(_ray, out _hit, 20,_layerMask))
             {
+                Debug.Log("click izquierdo");
                 Debug.DrawRay(_ray.origin, _ray.direction * 20, Color.red);
                
                //Melee Attack
@@ -39,6 +41,11 @@ public class PlayerAttack : MonoBehaviour
                 if(damagable != null )
                 {
                     SimpleAttack(_hit.transform.position);
+                    Debug.Log("Enemy detected and ready to attack");
+                }
+                else
+                {
+                    Debug.Log("No damagable enemy found");
                 }
             }
         }
@@ -62,6 +69,7 @@ public class PlayerAttack : MonoBehaviour
             _damagablesInRange[0].Damage(10);
           
             _anim.SetTrigger("SimpleAttack");
+            
         }
     }
 
@@ -72,14 +80,20 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        var damagable = other.GetComponent<IDamagable>();
+        // Evitar colisión con el propio jugador
+        if (other.CompareTag("Player"))
+        {
+            return;
+        }
 
-        if(damagable != null)
+        // Detectar si el objeto es dañable
+        var damagable = other.GetComponent<IDamagable>();
+        if (damagable != null)
         {
             _damagablesInRange.Add(damagable);
-           // Debug.Log("Damagable Add " + other.name);
-            //Debug.Log("Damagables in Range " + _damagablesInRange.Count); 
-        }    
+            Debug.Log("Damagable Add " + other.name);
+            Debug.Log("Damagables in Range " + _damagablesInRange.Count); 
+        }
     }
 
     private void OnTriggerExit(Collider other) 
@@ -89,8 +103,8 @@ public class PlayerAttack : MonoBehaviour
         if(damagable != null && _damagablesInRange.Contains(damagable))
         {
             _damagablesInRange.Remove(damagable);
-           // Debug.Log("Damagable Add " + other.name);
-            //Debug.Log("Damagables in Range " + _damagablesInRange.Count); 
+           Debug.Log("Damagable Add " + other.name);
+           Debug.Log("Damagables in Range " + _damagablesInRange.Count); 
         }    
     }
 }

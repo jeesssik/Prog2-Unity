@@ -10,8 +10,8 @@
 ---------------------------------------------------
 
 * Colliders en jugador y enemigos para que no sean atravesables ✔
-* Se cambió las animaciones del jugador pde AC_character por DogControl. (se momento solo tiene anim de caminar)✔
-* 
+* Se cambió las animaciones del jugador pde AC_character por DogControl. (de momento solo tiene anim de caminar)✔
+* El jugador detecta las colisiones con los diferentes enemigos, pero con el tipo de colisión que tiene los atraviesa
 
 
 
@@ -25,6 +25,7 @@
  * marcar cual es la final room, que tenga al boos final o algo
  * chequear si los colliders están tomados en cuenta en la programación
  * Las animaciones de los enemigos son procedurales, falta las variables de control del animator
+ * Está bien que el jugador atraviese a los enemigos?
 
 
 
