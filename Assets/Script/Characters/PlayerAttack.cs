@@ -99,8 +99,8 @@ public class PlayerAttack : MonoBehaviour
         if (damagable != null && _damagablesInRange.Contains(damagable))
         {
             _damagablesInRange.Remove(damagable);
-            Debug.Log("Damagable Removed " + other.name);
-            Debug.Log("Damagables in Range " + _damagablesInRange.Count);
+            //Debug.Log("Damagable Removed " + other.name);
+            //Debug.Log("Damagables in Range " + _damagablesInRange.Count);
         }
     }
 

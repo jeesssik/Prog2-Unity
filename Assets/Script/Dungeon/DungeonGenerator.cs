@@ -13,14 +13,12 @@ public class DungeonGenerator : MonoBehaviour
 
     [SerializeField] Vector2 _dungeonSize;
     [SerializeField] int _startPos = 0;
-
-    //[SerializeField] GameObject _room;
+    
     public GameObject[] rooms;
     [SerializeField] Vector2 offset;
 
     List<Cell> _board;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         MazeGenerator();
@@ -43,7 +41,7 @@ public class DungeonGenerator : MonoBehaviour
                     rb.UpdateRoom(currentCell.status);
 
                     // Si es la habitación inicial, eliminar enemigos
-                    if (i == 0 && j == 0) // O compara con el _startPos si está indexado
+                    if (i == 0 && j == 0) 
                     {
                         rb.ClearEnemies(); // Dejar libre de enemigos
                     }
@@ -59,7 +57,6 @@ public class DungeonGenerator : MonoBehaviour
 
     public void MazeGenerator()
     {
-        // Crear el tablero del dungeon
         _board = new List<Cell>();
 
         for (int i = 0; i < _dungeonSize.x; i++)
@@ -187,39 +184,32 @@ public class DungeonGenerator : MonoBehaviour
         // Instanciar las habitaciones
         GenerateDungeon();
     }
-
-
-
-
-
-    /*********************************************/
-
-
+    
 
     //Chequea las celdas vecinas
     List<int> CheckNeighbors(int cell)
     {
         List<int> neighbors = new List<int>();
 
-        //check Up
+        //check arriba
         if (cell - _dungeonSize.x >= 0 && !_board[Mathf.FloorToInt(cell - _dungeonSize.x)].visited)
         {
             neighbors.Add(Mathf.FloorToInt(cell - _dungeonSize.x));
         }
 
-        //check Down
+        //check abajo
         if (cell + _dungeonSize.x < _board.Count && !_board[Mathf.FloorToInt(cell + _dungeonSize.x)].visited)
         {
             neighbors.Add(Mathf.FloorToInt(cell + _dungeonSize.x));
         }
 
-        //check Right
+        //check derecha
         if ((cell + 1) % _dungeonSize.x != 0 && !_board[Mathf.FloorToInt(cell + 1)].visited)
         {
             neighbors.Add(Mathf.FloorToInt(cell + 1));
         }
 
-        //check Left
+        //check izquierda
         if (cell % _dungeonSize.x != 0 && !_board[Mathf.FloorToInt(cell - 1)].visited)
         {
             neighbors.Add(Mathf.FloorToInt(cell - 1));
@@ -227,8 +217,7 @@ public class DungeonGenerator : MonoBehaviour
 
         return neighbors;
     }
-
-
+    
     private void OnGUI()
     {
         float w = Screen.width / 2;
