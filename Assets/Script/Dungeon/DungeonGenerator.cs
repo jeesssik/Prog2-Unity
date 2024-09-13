@@ -49,6 +49,7 @@ public class DungeonGenerator : MonoBehaviour
                     }
 
                     newRoom.name += " " + i + "-" + j;
+        
                 }
             }
         }

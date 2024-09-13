@@ -9,10 +9,11 @@
 
 ---------------------------------------------------
 
-* Colliders en jugador y enemigos para que no sean atravesables ✔
-* Se cambió las animaciones del jugador pde AC_character por DogControl. (de momento solo tiene anim de caminar)✔
-* El jugador detecta las colisiones con los diferentes enemigos, pero con el tipo de colisión que tiene los atraviesa
-
+* ~~Colliders en jugador y enemigos para que no sean atravesables ✔~~
+* Se cambió las animaciones del jugador pde AC_character por DogControl.✔
+* El jugador ya ataca on left click a los enemigos cuando están en rango ✔
+* El destroy de enemigo en la sala 0 solo ocultaba su imagen pero el bicho a veces se incializada (aunque no se veía)
+  se cambió el <b>Destroy</b> por <b>enemy.SetActive(false)</b> ✔
 
 
 
@@ -20,7 +21,7 @@
 
 
  ## A chequear:
-
+ * El dungeongenerator no debería poner puertas si el dungeon no da a otro
  * las puertas que dan hacia la nada
  * marcar cual es la final room, que tenga al boos final o algo
  * chequear si los colliders están tomados en cuenta en la programación

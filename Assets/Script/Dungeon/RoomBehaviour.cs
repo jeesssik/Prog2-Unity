@@ -26,7 +26,7 @@ public class RoomBehaviour : MonoBehaviour
         {
             if (enemy != null)
             {
-                Destroy(enemy); // O desactívalos con enemy.SetActive(false);
+                 enemy.SetActive(false);
             }
         }
     }
