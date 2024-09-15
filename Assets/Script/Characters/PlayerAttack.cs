@@ -63,11 +63,17 @@ public class PlayerAttack : MonoBehaviour
         {
             if (toLook != default(Vector3))
             {
-                this.transform.LookAt(toLook);
+                // Obtiene la dirección en el plano horizontal
+                Vector3 direction = new Vector3(toLook.x - transform.position.x, 0, toLook.z - transform.position.z);
+                if (direction != Vector3.zero)
+                {
+                    // Establece la rotación solo en el eje Y
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+                }
             }
-
+    
             _damagablesInRange[0].Damage(10);
-
             _anim.SetTrigger("SimpleAttack");
         }
     }
