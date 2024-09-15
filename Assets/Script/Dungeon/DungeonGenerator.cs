@@ -235,7 +235,6 @@ public class DungeonGenerator : MonoBehaviour
 
 }*/
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -250,59 +249,56 @@ public class DungeonGenerator : MonoBehaviour
 
     [SerializeField] Vector2 _dungeonSize;
     [SerializeField] int _startPos = 0;
-
+    
     public GameObject[] rooms;
     [SerializeField] Vector2 offset;
 
     List<Cell> _board;
+    private Dictionary<Vector2Int, GameObject> _roomInstances;
 
     void Start()
     {
+        _roomInstances = new Dictionary<Vector2Int, GameObject>();
         MazeGenerator();
     }
 
-
     void GenerateDungeon()
     {
-        // Creamos una matriz de ocupación para asegurarnos de que no haya superposición
-        bool[,] occupied = new bool[(int)_dungeonSize.x, (int)_dungeonSize.y];
-
         for (int i = 0; i < _dungeonSize.x; i++)
         {
             for (int j = 0; j < _dungeonSize.y; j++)
             {
                 Cell currentCell = _board[Mathf.FloorToInt(i + j * _dungeonSize.x)];
 
-                if (currentCell.visited && !occupied[i, j]) // Aseguramos que la celda no esté ocupada
+                if (currentCell.visited)
                 {
-                    int randomRoom = Random.Range(0, rooms.Length);
-                    // Instanciar la habitación en la posición adecuada (usar Vector3 con offset y coord)
-                    Vector3 newPosition = new Vector3(i * offset.y, 0f, j * offset.x); // Evitar el signo negativo
+                    Vector2Int position = new Vector2Int(i, j);
 
-                    // Verificar si ya hay una habitación en esa posición
-                    Collider[] colliders = Physics.OverlapSphere(newPosition, 1f); // Verificar colisión cercana
-                    if (colliders.Length == 0)
+                    // Verifica si ya hay una habitación en la posición
+                    if (_roomInstances.ContainsKey(position))
                     {
-                        GameObject newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0f, -j * offset.y), Quaternion.identity) as GameObject;
-                        // Marcamos esta celda como ocupada
-                        occupied[i, j] = true;
-                        RoomBehaviour rb = newRoom.GetComponent<RoomBehaviour>();
-                        rb.UpdateRoom(currentCell.status);
-
-                        // Si es la habitación inicial, eliminar enemigos
-                        if (i == 0 && j == 0)
-                        {
-                            rb.ClearEnemies(); // Dejar libre de enemigos
-                        }
-
-                        newRoom.name += " " + i + "-" + j;
-
+                        continue; // Si ya hay una habitación en esta posición, salta a la siguiente
                     }
+
+                    int randomRoom = Random.Range(0, rooms.Length);
+                    GameObject newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0f, -j * offset.y), Quaternion.identity) as GameObject;
+                    RoomBehaviour rb = newRoom.GetComponent<RoomBehaviour>();
+                    rb.UpdateRoom(currentCell.status);
+
+                    // Si es la habitación inicial, eliminar enemigos
+                    if (i == 0 && j == 0) 
+                    {
+                        rb.ClearEnemies(); // Dejar libre de enemigos
+                    }
+
+                    newRoom.name += " " + i + "-" + j;
+
+                    // Agregar la nueva habitación al diccionario
+                    _roomInstances.Add(position, newRoom);
                 }
             }
         }
     }
-
 
     public void MazeGenerator()
     {
@@ -434,7 +430,6 @@ public class DungeonGenerator : MonoBehaviour
         GenerateDungeon();
     }
 
-
     //Chequea las celdas vecinas
     List<int> CheckNeighbors(int cell)
     {
@@ -466,7 +461,7 @@ public class DungeonGenerator : MonoBehaviour
 
         return neighbors;
     }
-
+    
     private void OnGUI()
     {
         float w = Screen.width / 2;
@@ -481,5 +476,5 @@ public class DungeonGenerator : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
+     
