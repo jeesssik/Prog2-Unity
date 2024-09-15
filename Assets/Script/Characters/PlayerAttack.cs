@@ -21,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
         _mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -36,8 +35,6 @@ public class PlayerAttack : MonoBehaviour
             if (Physics.Raycast(_ray, out _hit, 20, _layerMask))
             {
                 Debug.DrawRay(_ray.origin, _ray.direction * 20, Color.red);
-
-                // Melee Attack
                 var damagable = _hit.transform.GetComponent<IDamagable>();
 
                 if (damagable != null)
@@ -67,7 +64,6 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 direction = new Vector3(toLook.x - transform.position.x, 0, toLook.z - transform.position.z);
                 if (direction != Vector3.zero)
                 {
-                    // Calcula la rotación deseada en el plano horizontal
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
                     // Suaviza la rotación
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);

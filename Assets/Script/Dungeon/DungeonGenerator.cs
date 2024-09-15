@@ -22,12 +22,13 @@ public class DungeonGenerator : MonoBehaviour
 
     void Start()
     {
-        _roomInstances = new Dictionary<Vector2Int, GameObject>();
+          _roomInstances = new Dictionary<Vector2Int, GameObject>(); // Inicializa el diccionario
         MazeGenerator();
     }
 
     void GenerateDungeon()
     {
+    
         for (int i = 0; i < _dungeonSize.x; i++)
         {
             for (int j = 0; j < _dungeonSize.y; j++)
@@ -241,4 +242,4 @@ public class DungeonGenerator : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
-     
+  
