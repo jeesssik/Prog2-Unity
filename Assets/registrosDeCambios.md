@@ -1,6 +1,19 @@
  # REGISTRO DE CAMBIOS
  
- ##  Realizados
+### Aplicacion de SOLID al archivo DungeonGenerator
+
+El archivo tenía muchas responsabilidades (generar laberinto, habitacioners y lo de GUI)
+
+
+
+
+
+
+
+
+
+
+ ## No importantes (por ahora) Realizados
 
 * git ignore
 * la generación de salas muchas veces no genera una puerta de una sala a la otra. Y no se puede seguir avanzando ✔
@@ -24,7 +37,6 @@
  * El dungeongenerator no debería poner puertas si el dungeon no da a otro
  * las puertas que dan hacia la nada
  * marcar cual es la final room, que tenga al boos final o algo
- * chequear si los colliders están tomados en cuenta en la programación
  * Las animaciones de los enemigos son procedurales, falta las variables de control del animator
  * Está bien que el jugador atraviese a los enemigos?
 
