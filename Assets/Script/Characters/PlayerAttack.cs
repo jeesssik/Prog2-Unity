@@ -67,9 +67,10 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 direction = new Vector3(toLook.x - transform.position.x, 0, toLook.z - transform.position.z);
                 if (direction != Vector3.zero)
                 {
-                    // Establece la rotación solo en el eje Y
+                    // Calcula la rotación deseada en el plano horizontal
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+                    // Suaviza la rotación
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
                 }
             }
     
@@ -77,6 +78,7 @@ public class PlayerAttack : MonoBehaviour
             _anim.SetTrigger("SimpleAttack");
         }
     }
+
 
     void StrongAttack()
     {
