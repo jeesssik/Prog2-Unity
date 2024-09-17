@@ -7,7 +7,7 @@ public class RoomBehaviour : MonoBehaviour
     //0-Up, 1-Down, 2-Right, 3-Left
     [SerializeField] private GameObject[] walls;
     [SerializeField] private GameObject[] doors;
-    [SerializeField] private GameObject[] enemies; // Añadir los enemigos como objetos que pueden ser eliminados o desactivados
+    [SerializeField] private GameObject[] enemies; // Agrega a los enemigos como objetos que pueden ser eliminados o desactivados
 
 
     public void UpdateRoom(bool[] status)

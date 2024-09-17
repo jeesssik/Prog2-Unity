@@ -1,5 +1,5 @@
 /*
-Fábricas que crea instancias de generadores de laberintos. 
+Fábrica que crea instancias de generadores de laberintos. 
 Separa la lógica de creación de instancias de la lógica 
 de uso del generador de laberintos.
 */
