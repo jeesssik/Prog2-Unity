@@ -1,3 +1,5 @@
+/*Interfaz contrato para la generación de laberintos.*/
+
 
 using UnityEngine; 
 using System.Collections.Generic;
