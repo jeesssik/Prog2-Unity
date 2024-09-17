@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    DungeonGenerator dungeonGenerator;
-    [SerializeField] GameObject generator;
+     private MazeGenerator mazeGenerator;
+    [SerializeField] private Vector2 dungeonSize;  // Tamaño del laberinto
+    [SerializeField] private int startPos;         // Posición inicial
 
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
+       mazeGenerator = new MazeGenerator(dungeonSize, startPos);
+        List<Cell> generatedMaze = mazeGenerator.GenerateMaze();
 
-      dungeonGenerator = generator.GetComponent<DungeonGenerator>();
-
-      dungeonGenerator.MazeGenerator();
+        Debug.Log("Laberinto generado.");
     }
 
     // Update is called once per frame

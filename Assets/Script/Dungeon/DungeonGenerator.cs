@@ -1,4 +1,5 @@
-
+/************* CODIGO ORIGINAL *************/
+/*
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -243,3 +244,45 @@ public class DungeonGenerator : MonoBehaviour
     }
 }
   
+*/
+
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class DungeonGenerator : MonoBehaviour
+{
+    [SerializeField] private Vector2 _dungeonSize;
+    [SerializeField] private int _startPos = 0;
+    [SerializeField] private GameObject[] rooms;
+    [SerializeField] private Vector2 offset;
+
+    private MazeGenerator _mazeGenerator;
+    private DungeonRoomPlacer _roomPlacer;
+
+    void Start()
+    {
+        _mazeGenerator = new MazeGenerator(_dungeonSize, _startPos);
+        List<Cell> board = _mazeGenerator.GenerateMaze();
+        
+        _roomPlacer = new DungeonRoomPlacer(rooms, offset, _dungeonSize);
+        _roomPlacer.PlaceRooms(board);
+
+        OnGUI();
+    }
+
+    private void OnGUI()
+    {
+        float w = Screen.width / 2;
+        float h = Screen.height - 80;
+        if (GUI.Button(new Rect(w, h, 250, 50), "Regenerate Dungeon"))
+        {
+            RegenerateDungeon();
+        }
+    }
+
+    private void RegenerateDungeon()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+}

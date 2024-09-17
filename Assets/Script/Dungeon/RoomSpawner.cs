@@ -6,13 +6,13 @@ public class RoomSpawner : MonoBehaviour
 {
     [SerializeField] private RoomFactory _roomFactory;
    
-    public void CreateRooms(List<DungeonGenerator.Cell> board, Vector2 size, Vector2 offset)
+    public void CreateRooms(List<Cell> board, Vector2 size, Vector2 offset)
     {
         for(int i = 0; i < size.x; i++)
         {
             for(int j = 0; j < size.y; j++)
             {
-                DungeonGenerator.Cell currentCell = board[Mathf.FloorToInt(i+j*size.x)];
+                Cell currentCell = board[Mathf.FloorToInt(i+j*size.x)];
 
                 if(currentCell.visited)
                 {
