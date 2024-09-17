@@ -643,6 +643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d89fbe400d2f942879023871748de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonSize: {x: 6, y: 6}
+  startPos: 0
   generator: {fileID: 1381385101}
 --- !u!1 &832575517
 GameObject:

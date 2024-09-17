@@ -269,21 +269,6 @@ public class DungeonGenerator : MonoBehaviour
         _roomPlacer = new DungeonRoomPlacer(rooms, offset, _dungeonSize);
         _roomPlacer.PlaceRooms(board);
 
-        OnGUI();
     }
 
-    private void OnGUI()
-    {
-        float w = Screen.width / 2;
-        float h = Screen.height - 80;
-        if (GUI.Button(new Rect(w, h, 250, 50), "Regenerate Dungeon"))
-        {
-            RegenerateDungeon();
-        }
-    }
-
-    private void RegenerateDungeon()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 }

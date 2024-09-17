@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -19,6 +20,21 @@ public class GameController : MonoBehaviour
         List<Cell> maze = mazeGenerator.Generate(dungeonSize);
         
         Debug.Log("Laberinto generado.");
+    }
+
+    private void OnGUI()
+    {
+        float w = Screen.width / 2;
+        float h = Screen.height - 80;
+        if (GUI.Button(new Rect(w, h, 250, 50), "Regenerate Dungeon"))
+        {
+            RegenerateDungeon();
+        }
+    }
+
+    private void RegenerateDungeon()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Update is called once per frame
