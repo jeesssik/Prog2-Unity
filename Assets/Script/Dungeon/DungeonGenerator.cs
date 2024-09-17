@@ -262,8 +262,9 @@ public class DungeonGenerator : MonoBehaviour
 
     void Start()
     {
+        Vector2 mazeSize = new Vector2(6, 6); 
         _mazeGenerator = new MazeGenerator(_dungeonSize, _startPos);
-        List<Cell> board = _mazeGenerator.GenerateMaze();
+        List<Cell> board = _mazeGenerator.Generate(mazeSize);
         
         _roomPlacer = new DungeonRoomPlacer(rooms, offset, _dungeonSize);
         _roomPlacer.PlaceRooms(board);

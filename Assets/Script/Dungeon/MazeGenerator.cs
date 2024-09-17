@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeGenerator
+public class MazeGenerator : IMazeGenerator
 {
     private Vector2 _dungeonSize;
     private int _startPos;
@@ -15,8 +15,9 @@ public class MazeGenerator
         _board = new List<Cell>();
     }
 
-    public List<Cell> GenerateMaze()
+    public List<Cell> Generate(Vector2 size)
     {
+        _board = new List<Cell>();
         for (int i = 0; i < _dungeonSize.x; i++)
         {
             for (int j = 0; j < _dungeonSize.y; j++)
