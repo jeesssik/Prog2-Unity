@@ -51,6 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TP-Prog2.sln",
+    "dotnet.defaultSolution": "Prog-2.sln",
     "git.ignoreLimitWarning": true
 }

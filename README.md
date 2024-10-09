@@ -54,6 +54,8 @@ Se modifica el <b>GameController</b> para implementar la fábrica en vez de crea
 * la generación de salas muchas veces no genera una puerta de una sala a la otra. Y no se puede seguir avanzando ✔
 * se están generando rooms randoms entre todas las prefabs de rooms ✔
 *  la room inicial no tiene que tener un enemigo (se identificó a los "Enemy" y se los eliminó en la room 0) ✔
+* El dungeongenerator no debería poner puertas si el dungeon no da a otro
+ * las puertas que dan hacia la nada
 
 ---------------------------------------------------
 
@@ -66,11 +68,8 @@ Se modifica el <b>GameController</b> para implementar la fábrica en vez de crea
 
 
 
-
-
  ## A chequear:
- * El dungeongenerator no debería poner puertas si el dungeon no da a otro
- * las puertas que dan hacia la nada
+ 
  * marcar cual es la final room, que tenga al boos final o algo
  * Las animaciones de los enemigos son procedurales, falta las variables de control del animator
  * Está bien que el jugador atraviese a los enemigos?
